@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>🐍 Python Tutorial</title>
+
+  <!-- ลิงก์ไปยัง CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- PARTICLE CANVAS -->
+  <canvas id="particle-canvas"></canvas>
+
+  <header>
+    <h1 class="glitter">🐍 Python Tutorial พื้นฐาน 🐍</h1>
+    <p>WELCOME! <span class="emoji-move">✨</span></p>
+  </header>
+
+
+ <section class="lesson-section">
+  <h2>เริ่มเรียนรู้ Python!</h2>
+  <div class="lesson-grid">
+    <a href="lesson1.html" class="lesson-card">บทที่ 1: ตัวแปร (Variables)</a>
+    <a href="lesson2.html" class="lesson-card">บทที่ 2: คำสั่ง print()</a>
+    <a href="lesson3.html" class="lesson-card">บทที่ 3: While Loop</a>
+    <a href="lesson4.html" class="lesson-card">บทที่ 4: If / Else / Elif</a>
+    <a href="lesson5.html" class="lesson-card">บทที่ 5: Tuple</a>
+    <a href="lesson6.html" class="lesson-card">บทที่ 6: True/False</a>
+    <a href="lesson7.html" class="lesson-card">บทที่ 7: Input</a>
+    <a href="lesson8.html" class="lesson-card">บทที่ 8: For Loop</a>
+    <a href="lesson9.html" class="lesson-card">บทที่ 9: Operators</a>
+  </div>
+</section>
+
+
+  <footer>
+    <p>BY ☆*: .｡. o(≧▽≦)o .｡.:*☆ PRIMMIE (❁´◡`❁) </p>
+  </footer>
+
+  <!-- ==========================
+       PARTICLE JS
+       ========================== -->
+  <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+
+    function random(min,max){ return Math.random()*(max-min)+min; }
+
+    class Particle{
+      constructor(){
+        this.x=random(0,canvas.width);
+        this.y=random(0,canvas.height);
+        this.size=random(1,3);
+        this.speedX=random(-1,1);
+        this.speedY=random(-1,1);
+        this.color=`hsl(${random(0,360)},80%,60%)`;
+      }
+      update(){
+        this.x+=this.speedX;
+        this.y+=this.speedY;
+        if(this.x<0||this.x>canvas.width) this.speedX*=-1;
+        if(this.y<0||this.y>canvas.height) this.speedY*=-1;
+      }
+      draw(){
+        ctx.fillStyle=this.color;
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+        ctx.fill();
+      }
+    }
+
+    for(let i=0;i<100;i++) particles.push(new Particle());
+
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach(p=>{p.update(); p.draw();});
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener('resize',()=>{
+      canvas.width=window.innerWidth;
+      canvas.height=window.innerHeight;
+    });
+  </script>
+
+</body>
+</html>

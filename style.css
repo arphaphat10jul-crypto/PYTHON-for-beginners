@@ -1,0 +1,312 @@
+/* ========================
+IMPORT GOOGLE FONTS
+======================== */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,400;0,700;1,400&display=swap');
+
+/* ========================
+BASE STYLES
+======================== */
+body {
+    font-family: 'Sarabun', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: #fdf6f9;
+    color: #333;
+    overflow-x: hidden;
+}
+
+h1 { font-weight: 700; }
+p  { font-weight: 400; }
+
+/* ========================
+HEADER & NAV
+======================== */
+header {
+    background: #ff69b4;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+header a {
+    color: #ffe6f1;
+    text-decoration: none;
+}
+
+nav {
+    background: #ff85c1;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ========================
+SECTION CONTENT
+======================== */
+section {
+    padding: 1.5rem;
+    background: white;
+    margin: 1rem auto;
+    width: 80%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+}
+
+pre {
+    background: #272822;
+    color: #f8f8f2;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+  footer {
+    background: linear-gradient(135deg, #ee9696, #fa78a3, #ff4fa1); /* Gradient */
+    text-align: center;
+    padding: 2rem 1rem;
+    position: relative;  /* สำคัญสำหรับ particle */
+    overflow: hidden;    /* ป้องกัน particle เกินกรอบ */
+    color: rgb(255, 255, 255);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+
+/* ========================
+BUTTON NAVIGATION - CENTER VERTICAL
+======================== */
+.nav-buttons {
+    position: fixed;
+    top: 50%; /* กึ่งกลางแนวตั้ง */
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* ปุ่มซ้าย-ขวา */
+    padding: 0 0px; /* ระยะขอบซ้าย-ขวา */
+    transform: translateY(-50%); /* ปรับให้อยู่กลางจอจริงๆ */
+    z-index: 1000;
+}
+
+.circle-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ff85c1, #ff4fa1);
+    color: white;
+    font-size: 2rem;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(255,105,180,0.6);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: glitter 2s infinite linear, bounce 1s infinite alternate;
+}
+
+/* hover แบบไม่เอียง */
+.circle-btn:hover {
+    transform: scale(1.15);
+}
+
+/* สำหรับมือถือ */
+@media (max-width: 480px) {
+    .nav-buttons {
+        padding: 0 0px;
+    }
+    .circle-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+}
+
+/* ========================
+ANIMATIONS
+======================== */
+@keyframes glitter {
+    0% { box-shadow: 0 0 5px #ffb6d9, 0 0 10px #ff69b4; }
+    50% { box-shadow: 0 0 20px #ff8ac6, 0 0 30px #ff4fa1; }
+    100% { box-shadow: 0 0 5px #ffb6d9, 0 0 10px #ff69b4; }
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+@keyframes glitterText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes move {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px) rotate(15deg); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(-10deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+    100% { transform: translateY(0px) rotate(-10deg); }
+}
+
+/* ========================
+GLITTER TEXT
+======================== */
+.glitter {
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+    background: linear-gradient(45deg, #ff69b4, #ffcc00, #00ffff);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glitterText 3s ease infinite;
+}
+
+/* ========================
+EMOJI ANIMATION
+======================== */
+.emoji-move {
+    display: inline-block;
+    animation: move 2s linear infinite alternate;
+    font-size: 2rem;
+}
+
+/* ========================
+PARTICLE CANVAS
+======================== */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* ========================
+THANK YOU PAGE
+======================== */
+.center-container {
+    display: flex;
+    flex-direction: column; /* ปุ่มและ emoji */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.thankyou-row {
+    display: flex;            
+    align-items: center;      
+    justify-content: center;  
+    gap: 20px;                
+}
+
+.emoji {
+    display: inline-block;
+    font-size: 4rem;
+    animation: float 3s ease-in-out infinite alternate;
+}
+
+.cute-img {
+    width: 120px;            
+    height: auto;
+    animation: bounce 2s infinite alternate;
+    display: inline-block;   
+    margin: 0;               
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 50px;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #ff85c1, #ff4fa1);
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 30px;
+    box-shadow: 0 0 15px rgba(255,105,180,0.6);
+    transition: transform 0.3s;
+}
+
+.back-home:hover {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+/* ========================
+LESSON SECTION
+======================== */
+.lesson-section {
+    padding: 2rem;
+    background: #fff0f6;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+    margin: 2rem auto;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.lesson-section h2 {
+    font-size: 2rem;
+    color: #ff69b4;
+    margin-bottom: 1.5rem;
+}
+
+.lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.lesson-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    background: linear-gradient(135deg, #ff85c1, #ff4fa1);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(255, 105, 180, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.lesson-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+}
+
+/* สำหรับมือถือ */
+@media (max-width: 480px) {
+    .lesson-section h2 {
+        font-size: 1.5rem;
+    }
+    .lesson-card {
+        height: 60px;
+        font-size: 0.9rem;
+    }
+}
